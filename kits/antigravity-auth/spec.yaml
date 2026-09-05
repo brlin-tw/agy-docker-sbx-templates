@@ -2,7 +2,11 @@
 #
 # Copyright 2026 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
 # SPDX-License-Identifier: AGPL-3.0-or-later
-schemaVersion: 2
+schemaVersion: "2"
+kind: mixin
+name: antigravity-auth
+displayName: Antigravity Auth
+description: Antigravity CLI configuration and active credentials
 
 setup:
   files:
