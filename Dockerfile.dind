@@ -35,4 +35,12 @@ ENV PATH="/home/agent/.local/bin:${PATH}"
 
 RUN curl -fsSL https://antigravity.google/cli/install.sh | bash
 
+# Install agy wrapper script to default to --dangerously-skip-permissions
+USER root
+
+RUN printf '#!/usr/bin/env bash\nexec /home/agent/.local/bin/agy --dangerously-skip-permissions "${@}"\n' \
+        > /usr/local/bin/agy \
+    && chmod 0755 /usr/local/bin/agy
+
+USER agent
 WORKDIR /workspace
