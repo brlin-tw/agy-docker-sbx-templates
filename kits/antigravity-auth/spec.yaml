@@ -8,6 +8,15 @@ name: antigravity-auth
 displayName: Antigravity Auth
 description: Antigravity CLI configuration and active credentials
 
+permissions:
+  network:
+    allow:
+      - "*.goog"
+      - "*.google.com"
+      - "*.googleapis.com"
+      - "*.run.app"
+      - "*.azureedge.net"
+
 setup:
   files:
     - path: /home/agent/.gemini/antigravity-cli/settings.json
