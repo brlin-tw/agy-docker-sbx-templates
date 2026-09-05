@@ -30,6 +30,10 @@ RUN if getent group docker >/dev/null; then \
         usermod -aG docker agent; \
     fi
 
-# Switch back to the non-root agent user
+# Switch back to the non-root agent user and install Antigravity CLI
 USER agent
+ENV PATH="/home/agent/.local/bin:${PATH}"
+
+RUN curl -fsSL https://antigravity.google/cli/install.sh | bash
+
 WORKDIR /workspace

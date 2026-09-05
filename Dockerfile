@@ -22,6 +22,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Switch back to the non-root agent user
+# Switch back to the non-root agent user and install Antigravity CLI
 USER agent
+ENV PATH="/home/agent/.local/bin:${PATH}"
+
+RUN curl -fsSL https://antigravity.google/cli/install.sh | bash
+
 WORKDIR /workspace
