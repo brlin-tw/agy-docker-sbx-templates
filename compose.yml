@@ -7,12 +7,12 @@
 #
 # Copyright 2026 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
 # SPDX-License-Identifier: CC-BY-SA-4.0
-name: project-name
+name: agy-docker-sbx-templates
 services:
   # Environment for testing the project
   test-environment:
-    container_name: project-name-test
-    hostname: project-name-test
+    container_name: agy-docker-sbx-templates-test
+    hostname: agy-docker-sbx-templates-test
     image: ubuntu:24.04
     volumes:
       - type: bind
