@@ -62,6 +62,17 @@ init(){
     local kit_dir="${project_dir}/kits/antigravity-auth"
     local kit_target_dir="${kit_dir}/files/home/agent/.gemini/antigravity-cli"
 
+    if test -e "${kit_dir}/files"; then
+        printf \
+            'Info: Cleaning previous kit files...\n'
+        if ! rm -rf "${kit_dir}/files"; then
+            printf \
+                'Error: Failed to clean previous kit files.\n' \
+                1>&2
+            return 2
+        fi
+    fi
+
     printf \
         'Info: Preparing kit target directory at "%s"...\n' \
         "${kit_target_dir}"
@@ -80,13 +91,43 @@ init(){
     fi
 
     printf \
-        'Info: Copying host credentials from "%s" to kit...\n' \
+        'Info: Copying essential configuration files from "%s" to kit...\n' \
         "${host_config_dir}"
-    if ! cp -a "${host_config_dir}/." "${kit_target_dir}/"; then
+
+    local flag_copied_any=false
+    # Copy settings.json if present
+    if test -f "${host_config_dir}/settings.json"; then
+        if ! cp -a "${host_config_dir}/settings.json" "${kit_target_dir}/settings.json"; then
+            printf \
+                'Error: Failed to copy "%s".\n' \
+                "${host_config_dir}/settings.json" \
+                1>&2
+            return 2
+        fi
+        flag_copied_any=true
+    fi
+
+    # Copy any top-level credentials/auth JSON or token files if present
+    local file
+    for file in "${host_config_dir}"/*.json "${host_config_dir}"/.*auth* "${host_config_dir}"/.*token*; do
+        if test -f "${file}"; then
+            local filename="${file##*/}"
+            if ! cp -a "${file}" "${kit_target_dir}/${filename}"; then
+                printf \
+                    'Error: Failed to copy "%s".\n' \
+                    "${file}" \
+                    1>&2
+                return 2
+            fi
+            flag_copied_any=true
+        fi
+    done
+
+    if test "${flag_copied_any}" = false; then
         printf \
-            'Error: Failed to copy host configuration files.\n' \
+            'Warning: No configuration or credential files found in "%s".\n' \
+            "${host_config_dir}" \
             1>&2
-        return 2
     fi
 
     printf \
