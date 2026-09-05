@@ -51,6 +51,22 @@ Launch a new sandbox session using the custom template:
 sbx run --template agy-docker-sbx-template:latest shell
 ```
 
+### Injecting Antigravity Credentials via Kit
+
+To run the sandbox pre-authenticated with your host's Antigravity credentials:
+
+1. Prepare the authentication kit with your current host credentials:
+
+   ```console
+   ./prepare-auth-kit.sh
+   ```
+
+2. Run the sandbox with the kit attached:
+
+   ```console
+   sbx run --kit ./kits/antigravity-auth/ --template agy-docker-sbx-template:latest shell
+   ```
+
 ## Licensing
 
 Unless otherwise noted([comment headers](https://reuse.software/spec-3.3/#comment-headers)/[REUSE.toml](https://reuse.software/spec-3.3/#reusetoml)), this product is licensed under [the 3.0 version of the GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.html), or any of its more recent versions of your preference.
