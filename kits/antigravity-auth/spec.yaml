@@ -1,0 +1,11 @@
+# Docker Sandboxes Kit specification for Antigravity credentials
+#
+# Copyright 2026 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
+# SPDX-License-Identifier: AGPL-3.0-or-later
+schemaVersion: 2
+
+setup:
+  files:
+    - path: /home/agent/.gemini/antigravity-cli/settings.json
+      mode: 0600
+      description: "Antigravity CLI configuration and active credentials"

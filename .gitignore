@@ -96,4 +96,7 @@
 /continuous-integration/venv/
 
 # Don't track unpacked product files
-/project-name-*/
+/agy-docker-sbx-templates-*/
+
+# Don't track credential files injected into Sandbox Kits
+/kits/**/files/
