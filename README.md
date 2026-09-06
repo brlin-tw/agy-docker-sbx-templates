@@ -129,6 +129,10 @@ Docker Sandboxes preserves the guest filesystem state across restarts for a name
 2. Inside the sandbox, run `agy` and complete the browser OAuth sign-in loop once.
 3. Subsequent runs with `sbx run --name antigravity-dev shell` will reuse the authenticated session.
 
+## Credits
+
+Special thanks to [Oleg Šelajev](https://github.com/shelajev) for the [agy-sbx-kit](https://github.com/shelajev/agy-sbx-kit) project, which provided inspiration for Docker Sandboxes OAuth proxy interception, `--mode=accept-edits` configuration, and headless Google authentication patterns.
+
 ## Licensing
 
 Unless otherwise noted([comment headers](https://reuse.software/spec-3.3/#comment-headers)/[REUSE.toml](https://reuse.software/spec-3.3/#reusetoml)), this product is licensed under [the 3.0 version of the GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.html), or any of its more recent versions of your preference.

@@ -10,6 +10,16 @@ description: Antigravity CLI configuration and active credentials
 
 credentials:
   - service: antigravity
+    description: Google OAuth session used by Antigravity CLI
+    oauth:
+      tokenEndpoint:
+        host: oauth2.googleapis.com
+        path: /token
+      resourceHosts:
+        - cloudaicompanion.googleapis.com
+        - cloudcode-pa.googleapis.com
+        - daily-cloudcode-pa.googleapis.com
+        - generativelanguage.googleapis.com
     apiKey:
       name: GEMINI_API_KEY
       proxyManaged: true
@@ -29,6 +39,15 @@ permissions:
       - "*.googleapis.com"
       - "*.run.app"
       - "*.azureedge.net"
+      - "accounts.google.com"
+      - "antigravity.google"
+      - "antigravity-unleash.goog"
+      - "cloudaicompanion.googleapis.com"
+      - "cloudcode-pa.googleapis.com"
+      - "daily-cloudcode-pa.googleapis.com"
+      - "generativelanguage.googleapis.com"
+      - "oauth2.googleapis.com"
+      - "www.googleapis.com"
 
 setup:
   files:

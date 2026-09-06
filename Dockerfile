@@ -28,9 +28,9 @@ ENV PATH="/home/agent/.local/bin:${PATH}"
 
 RUN curl -fsSL https://antigravity.google/cli/install.sh | bash
 
-# Wrap the real agy binary to default to --dangerously-skip-permissions
+# Wrap the real agy binary to default to YOLO mode (--dangerously-skip-permissions --mode=accept-edits)
 RUN mv /home/agent/.local/bin/agy /home/agent/.local/bin/agy.real \
-    && printf '#!/usr/bin/env bash\nexec /home/agent/.local/bin/agy.real --dangerously-skip-permissions "${@}"\n' \
+    && printf '#!/usr/bin/env bash\nexec /home/agent/.local/bin/agy.real --dangerously-skip-permissions --mode=accept-edits "${@}"\n' \
         > /home/agent/.local/bin/agy \
     && chmod 0755 /home/agent/.local/bin/agy
 

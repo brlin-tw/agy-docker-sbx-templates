@@ -16,6 +16,10 @@ sandbox:
   image: "buorenlin/antigravity:latest"
   entrypoint:
     - "agy"
+  command:
+    default:
+      - "--dangerously-skip-permissions"
+      - "--mode=accept-edits"
 
 environment:
   variables:
@@ -26,6 +30,16 @@ environment:
 
 credentials:
   - service: antigravity
+    description: Google OAuth session used by Antigravity CLI
+    oauth:
+      tokenEndpoint:
+        host: oauth2.googleapis.com
+        path: /token
+      resourceHosts:
+        - cloudaicompanion.googleapis.com
+        - cloudcode-pa.googleapis.com
+        - daily-cloudcode-pa.googleapis.com
+        - generativelanguage.googleapis.com
     apiKey:
       name: GEMINI_API_KEY
       proxyManaged: true
@@ -47,13 +61,22 @@ permissions:
       - "*.googleapis.com"
       - "*.run.app"
       - "*.yarnpkg.com"
+      - "accounts.google.com"
+      - "antigravity.google"
+      - "antigravity-unleash.goog"
       - "archive.ubuntu.com"
+      - "cloudaicompanion.googleapis.com"
+      - "cloudcode-pa.googleapis.com"
       - "crates.io"
+      - "daily-cloudcode-pa.googleapis.com"
       - "download.docker.com"
       - "files.pythonhosted.org"
+      - "generativelanguage.googleapis.com"
       - "github.com"
       - "gitlab.com"
+      - "oauth2.googleapis.com"
       - "proxy.golang.org"
       - "pypi.org"
       - "registry.npmjs.org"
       - "security.ubuntu.com"
+      - "www.googleapis.com"
