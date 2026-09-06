@@ -40,6 +40,9 @@ credentials:
         - cloudcode-pa.googleapis.com
         - daily-cloudcode-pa.googleapis.com
         - generativelanguage.googleapis.com
+      sentinels:
+        accessToken: "antigravity-access-token"
+        refreshToken: "antigravity-refresh-token"
     apiKey:
       name: GEMINI_API_KEY
       proxyManaged: true
