@@ -4,9 +4,9 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 schemaVersion: "2"
 kind: sandbox
-name: antigravity
+name: agy
 version: "1.0.0"
-displayName: Google Antigravity
+displayName: Google Antigravity CLI
 description: Google Antigravity agentic AI coding assistant
 sourceURL: "https://gitlab.com/brlin/agy-docker-sbx-templates"
 licenses:

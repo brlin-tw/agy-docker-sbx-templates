@@ -20,20 +20,9 @@ for opt in "${set_opts[@]}"; do
 done
 
 init(){
-    local variant="${1:-base}"
-    local tag="${2:-antigravity:latest}"
-    local output_archive="${3:-agy-template.tar}"
+    local tag="${1:-antigravity:latest}"
+    local output_archive="${2:-agy-template.tar}"
     local dockerfile="Dockerfile"
-
-    if test "${variant}" = "dind"; then
-        dockerfile="Dockerfile.dind"
-    elif test "${variant}" != "base"; then
-        printf \
-            'Error: Unknown variant "%s". Supported variants: base, dind.\n' \
-            "${variant}" \
-            1>&2
-        return 1
-    fi
 
     local required_commands=(
         docker

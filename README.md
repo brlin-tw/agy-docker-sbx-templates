@@ -17,11 +17,7 @@ Container image templates to run Antigravity CLI using the Docker Sandboxes util
 You can build the template using the provided helper script:
 
 ```console
-# Build default base variant
-./build-sandbox-template.sh base
-
-# Or build Docker-in-Docker variant
-./build-sandbox-template.sh dind antigravity:dind agy-template-dind.tar
+./build-sandbox-template.sh
 ```
 
 Alternatively, build manually using Docker CLI:
@@ -29,9 +25,6 @@ Alternatively, build manually using Docker CLI:
 ```console
 # Base template
 docker build -t antigravity:latest -f Dockerfile .
-
-# Docker-in-Docker template
-docker build -t antigravity:dind -f Dockerfile.dind .
 ```
 
 ### Loading the Template into Docker Sandboxes
