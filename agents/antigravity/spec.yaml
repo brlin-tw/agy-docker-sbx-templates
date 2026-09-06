@@ -9,7 +9,7 @@ displayName: Google Antigravity
 description: Google Antigravity agentic AI coding assistant
 
 sandbox:
-  image: "agy-docker-sbx-template:latest"
+  image: "buorenlin/antigravity:latest"
   entrypoint:
     - "agy"
 
