@@ -45,10 +45,18 @@ sbx template load agy-template.tar
 
 ### Running Antigravity CLI in a Sandbox
 
-Launch a new sandbox session using the custom template:
+Launch a new sandbox shell session using the custom template:
 
 ```console
 sbx run --template agy-docker-sbx-template:latest shell
+```
+
+### Running as a Dedicated Agent
+
+You can also run Antigravity as a first-class agent using the Agent Kit definition:
+
+```console
+sbx run --kit ./agents/antigravity/ antigravity
 ```
 
 ### Injecting Antigravity Credentials via Kit

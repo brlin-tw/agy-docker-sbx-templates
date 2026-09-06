@@ -98,5 +98,6 @@
 # Don't track unpacked product files
 /agy-docker-sbx-templates-*/
 
-# Don't track credential files injected into Sandbox Kits
+# Don't track credential files injected into Sandbox Kits or Agents
 /kits/**/files/
+/agents/**/files/

@@ -1,0 +1,23 @@
+# Docker Sandboxes Agent Kit specification for Google Antigravity
+#
+# Copyright 2026 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
+# SPDX-License-Identifier: AGPL-3.0-or-later
+schemaVersion: "2"
+kind: sandbox
+name: antigravity
+displayName: Google Antigravity
+description: Google Antigravity agentic AI coding assistant
+
+sandbox:
+  image: "agy-docker-sbx-template:latest"
+  entrypoint:
+    - "agy"
+
+permissions:
+  network:
+    allow:
+      - "*.goog"
+      - "*.google.com"
+      - "*.googleapis.com"
+      - "*.run.app"
+      - "*.azureedge.net"
