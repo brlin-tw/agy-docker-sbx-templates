@@ -5,19 +5,42 @@
 schemaVersion: "2"
 kind: sandbox
 name: antigravity
+version: "1.0.0"
 displayName: Google Antigravity
 description: Google Antigravity agentic AI coding assistant
+sourceURL: "https://gitlab.com/brlin/agy-docker-sbx-templates"
+licenses:
+  - AGPL-3.0-or-later
 
 sandbox:
   image: "buorenlin/antigravity:latest"
   entrypoint:
     - "agy"
 
+environment:
+  variables:
+    COLORTERM: "truecolor"
+    LANG: "C.UTF-8"
+    PAGER: "cat"
+    TERM: "xterm-256color"
+
 permissions:
   network:
     allow:
+      - "*.azureedge.net"
+      - "*.github.com"
       - "*.goog"
       - "*.google.com"
       - "*.googleapis.com"
       - "*.run.app"
-      - "*.azureedge.net"
+      - "*.yarnpkg.com"
+      - "archive.ubuntu.com"
+      - "crates.io"
+      - "download.docker.com"
+      - "files.pythonhosted.org"
+      - "github.com"
+      - "gitlab.com"
+      - "proxy.golang.org"
+      - "pypi.org"
+      - "registry.npmjs.org"
+      - "security.ubuntu.com"

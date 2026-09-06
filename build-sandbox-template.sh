@@ -21,7 +21,7 @@ done
 
 init(){
     local variant="${1:-base}"
-    local tag="${2:-agy-docker-sbx-template:latest}"
+    local tag="${2:-antigravity:latest}"
     local output_archive="${3:-agy-template.tar}"
     local dockerfile="Dockerfile"
 

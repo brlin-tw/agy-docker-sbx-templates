@@ -21,17 +21,17 @@ You can build the template using the provided helper script:
 ./build-sandbox-template.sh base
 
 # Or build Docker-in-Docker variant
-./build-sandbox-template.sh dind agy-docker-sbx-template:dind agy-template-dind.tar
+./build-sandbox-template.sh dind antigravity:dind agy-template-dind.tar
 ```
 
 Alternatively, build manually using Docker CLI:
 
 ```console
 # Base template
-docker build -t agy-docker-sbx-template:latest -f Dockerfile .
+docker build -t antigravity:latest -f Dockerfile .
 
 # Docker-in-Docker template
-docker build -t agy-docker-sbx-template:dind -f Dockerfile.dind .
+docker build -t antigravity:dind -f Dockerfile.dind .
 ```
 
 ### Loading the Template into Docker Sandboxes
@@ -39,7 +39,7 @@ docker build -t agy-docker-sbx-template:dind -f Dockerfile.dind .
 Save the image archive and load it directly into the sandbox runtime image store:
 
 ```console
-docker image save agy-docker-sbx-template:latest -o agy-template.tar
+docker image save antigravity:latest -o agy-template.tar
 sbx template load agy-template.tar
 ```
 
@@ -48,7 +48,7 @@ sbx template load agy-template.tar
 Launch a new sandbox shell session using the custom template:
 
 ```console
-sbx run --template agy-docker-sbx-template:latest shell
+sbx run --template antigravity:latest shell
 ```
 
 ### Running as a Dedicated Agent
@@ -72,7 +72,7 @@ To run the sandbox pre-authenticated with your host's Antigravity credentials:
 2. Run the sandbox with the kit attached:
 
    ```console
-   sbx run --kit ./kits/antigravity-auth/ --template agy-docker-sbx-template:latest shell
+   sbx run --kit ./kits/antigravity-auth/ --template antigravity:latest shell
    ```
 
 ## Licensing
