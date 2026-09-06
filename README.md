@@ -59,11 +59,15 @@ You can also run Antigravity as a first-class agent using the Agent Kit definiti
 sbx run --kit ./agents/antigravity/ antigravity
 ```
 
-### Injecting Antigravity Credentials via Kit
+### Injecting Antigravity Credentials and Authentication
 
-To run the sandbox pre-authenticated with your host's Antigravity credentials:
+Because Docker Sandboxes run inside isolated MicroVMs, the host operating system's native D-Bus Keyring / Secret Service (where desktop OAuth refresh tokens are kept) is not accessible from inside the sandbox.
 
-1. Prepare the authentication kit with your current host credentials:
+You can configure and authenticate Antigravity CLI using any of the following approaches:
+
+#### Method 1: Using the Configuration Kit
+
+1. Prepare the authentication kit with your current host configuration files (`settings.json`, `keybindings.json`):
 
    ```console
    ./prepare-auth-kit.sh
@@ -72,8 +76,33 @@ To run the sandbox pre-authenticated with your host's Antigravity credentials:
 2. Run the sandbox with the kit attached:
 
    ```console
+   # Running as a shell
    sbx run --kit ./kits/antigravity-auth/ --template antigravity:latest shell
+
+   # Or running as a dedicated agent
+   sbx run --kit ./agents/antigravity/ --kit ./kits/antigravity-auth/ antigravity
    ```
+
+#### Method 2: API Key Injection (Recommended for Automation)
+
+Pass your Gemini API key directly to the sandbox environment:
+
+```console
+sbx run --template antigravity:latest -e GEMINI_API_KEY="your-api-key" shell
+```
+
+#### Method 3: Persistent Sandbox OAuth Sign-In
+
+Docker Sandboxes preserves the guest filesystem state across restarts for a named sandbox:
+
+1. Launch a named sandbox:
+
+   ```console
+   sbx run --name antigravity-dev --template antigravity:latest shell
+   ```
+
+2. Inside the sandbox, run `agy` and complete the browser OAuth sign-in loop once.
+3. Subsequent runs with `sbx run --name antigravity-dev shell` will reuse the authenticated session.
 
 ## Licensing
 
