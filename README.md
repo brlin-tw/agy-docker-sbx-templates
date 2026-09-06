@@ -83,15 +83,40 @@ You can configure and authenticate Antigravity CLI using any of the following ap
    sbx run --kit ./agents/antigravity/ --kit ./kits/antigravity-auth/ antigravity
    ```
 
-#### Method 2: API Key Injection (Recommended for Automation)
+#### Method 2: Host-Managed Dynamic Secret Injection (Recommended)
 
-Pass your Gemini API key directly to the sandbox environment:
+Docker Sandboxes can dynamically resolve and inject credentials on the host side without ever storing plaintext secrets in the sandbox microVM:
+
+1. Store or bind the credential for the `antigravity` service in `sbx`:
+
+   ```console
+   # Set API key interactively:
+   sbx secret set antigravity
+
+   # Or dynamically resolve using host CLI (e.g. gcloud):
+   sbx secret set antigravity --command "gcloud auth print-access-token"
+
+   # Or dynamically resolve from a secret manager (e.g. 1Password):
+   sbx secret set antigravity --ref "op://Work/Gemini/api-key"
+   ```
+
+2. Run the agent or sandbox with the kit:
+
+   ```console
+   sbx run --kit ./agents/antigravity/ antigravity
+   ```
+
+   The Docker Sandboxes proxy will automatically intercept outbound requests to `*.googleapis.com` and inject the resolved `Authorization: Bearer <token>` header securely on the host side.
+
+#### Method 3: Direct API Key Passing
+
+Pass your Gemini API key via environment variable:
 
 ```console
 sbx run --template antigravity:latest -e GEMINI_API_KEY="your-api-key" shell
 ```
 
-#### Method 3: Persistent Sandbox OAuth Sign-In
+#### Method 4: Persistent Sandbox OAuth Sign-In
 
 Docker Sandboxes preserves the guest filesystem state across restarts for a named sandbox:
 

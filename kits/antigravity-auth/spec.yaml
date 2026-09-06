@@ -8,6 +8,19 @@ name: antigravity-auth
 displayName: Antigravity Auth
 description: Antigravity CLI configuration and active credentials
 
+credentials:
+  - service: antigravity
+    apiKey:
+      name: GEMINI_API_KEY
+      proxyManaged: true
+      inject:
+        - domain: "generativelanguage.googleapis.com"
+          header: Authorization
+          format: "Bearer %s"
+        - domain: "*.googleapis.com"
+          header: Authorization
+          format: "Bearer %s"
+
 permissions:
   network:
     allow:

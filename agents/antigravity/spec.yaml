@@ -24,6 +24,19 @@ environment:
     PAGER: "cat"
     TERM: "xterm-256color"
 
+credentials:
+  - service: antigravity
+    apiKey:
+      name: GEMINI_API_KEY
+      proxyManaged: true
+      inject:
+        - domain: "generativelanguage.googleapis.com"
+          header: Authorization
+          format: "Bearer %s"
+        - domain: "*.googleapis.com"
+          header: Authorization
+          format: "Bearer %s"
+
 permissions:
   network:
     allow:
